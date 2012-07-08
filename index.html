@@ -75,6 +75,10 @@ li { line-height: 180%;}
   border-radius: 10px;
   padding: 10px;
 }
+.pagebreak
+{
+  page-break-before:always;
+}
 
 #presentation { display: none;}
 #completeslides { margin: 5px;}
@@ -598,7 +602,9 @@ function createSimpleSlide(container, pagenum) {
 function ShowAllPages(container) {
     container.empty();
     slides.each(function(i, el) {
-        createSimpleSlide(container, i+1);
+        var card = createSimpleSlide(container, i+1);
+        if (i > 0) card.addClass("pagebreak");
+        // Remove this temporarily for PDF conversion
         container.append($("<br/>"));
     });
 }
