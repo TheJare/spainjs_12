@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>SpainJS 2012 - Javascript in Games</title>
+<style>
+
+body { margin: 0; background: #444 url("invaderbg.png"); color: #FFF; font-family: arial, sans-serif;}
+
+h1 { color: #FA6; font-family: "Trebuchet MS", Helvetica, sans-serif;}
+h2 { color: #DB6; text-align: center; background:black; font-family: "Trebuchet MS", Helvetica, sans-serif;}
+h3 { color: #DFB;}
+a, a:visited { color: #BFD;}
+
+.fullscreen { 
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+#card {
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  perspective: 800px;
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  perspective-origin: 50% 50%;
+  -webkit-perspective-origin: 50% 50%;
+  -moz-perspective-origin: 50% 50%;
+}
+
+li { line-height: 180%;}
+
+.face {
+  display: block;
+  position: absolute;
+  margin:0;
+  width: 100%;
+  height: 100%;
+  color: #FFD;
+  font-size: 1.5em;
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 10px;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(400px);
+  -moz-transform: translateZ(400px);
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+}
+
+.simpleslide {
+  display: block;
+  margin:0;
+  width: 800px;
+  height: 600px;
+  color: #FFD;
+  font-size: 1.5em;
+  background: rgba(255, 255, 255, 0.03);
+  position:relative;
+
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#presentation { display: none;}
+#completeslides { margin: 5px;}
+
+.titlecenter { position:absolute; margin: auto; text-align: center; top: 25%; width:100%;}
+
+.bottombar {position:absolute; bottom: 2px; width:100%; text-align: center; font-family: Arial;}
+
+.copyrightbar {position:absolute; bottom: 0; width:100%; text-align: left; font-size: 0.5em; color: #8F8;}
+
+.tyrianship {background:url('newshb.shp.000000.png') 0 0; width: 118px; height:138px;}
+
+</style>
+</head>
+<body>
+
+<div class="fullscreen" id="container">
+  <div id="card"></div>
+  <div id="slidepage" class="bottombar"></div>
+</div>
+
+<div id="completeslides"></div>
+
+<div id="presentation">
+  <div id="maintitle">
+    <div class="titlecenter" style="top:30%"><h1>Overview of Javascript in Games</h1>by<br/>Javier Arevalo</div>
+  </div>
+  <div>
+    <h2>So, who am I?</h2>
+    <ul>
+      <li>Making commercial games since 1986</li>
+      <li>On personal computers, consoles, social/web, mobile</li>
+      <li>Programmer, designer, producer, wannabee artist and sound dude</li>
+      <li>Graphics technology, core engine, user interface, AI, backend</li>
+      <li>Used many programming languages, from assembly to Javascript</li>
+    </ul>
+    <img style="position:absolute;bottom:13px;left: 10px" src="jaregames_sd.jpg" />
+    <img style="position:absolute;bottom:60px;left: 90px" src="jaregames_hh.jpg" />
+    <img style="position:absolute;bottom:20px;left:180px" src="jaregames_praet.jpg" />
+    <img style="position:absolute;bottom: 5px;left:310px" src="jaregames_com.jpg" />
+    <img style="position:absolute;bottom:80px;left:380px" src="jaregames_cr.jpg" />
+    <img style="position:absolute;bottom:60px;left:510px" src="jaregames_proto.jpg" />
+    <img style="position:absolute;bottom:20px;left:530px" src="jaregames_ap.jpg" />
+  </div>
+  <div>
+    <section>
+    <h2>Wait, Javascript?</h2>
+    <ul>
+      <li>Most 'AAA' PC/console games are written in C++</li>
+      <li>Flash dominates the web and social games scene</li>
+      <li>Objective-C, Java and C# rule their respective mobile platforms</li>
+      <li>Servers in Java, PHP, Python, Ruby, Go...</li>
+    </ul>
+    </section>
+    <section>
+    Makes sense to prefer native code. Games often require:
+    <ul>
+      <li>Raw performance</li>
+      <li>Real-time execution</li>
+      <li>Complex / flexible input</li>
+      <li>Rich visuals and audio</li>
+      <li>Storage, networking</li>
+    </ul>
+    <img style="position:absolute;bottom:40px;left:500px" src="pedal_metal.png" />
+    </section>
+  </div>
+  <div>
+    <h2>Hardcore Game Programmers</h2>
+    <img style="position:absolute;bottom: 50px; left:100px; width:600px; height:440px" src="zztop.jpg" />
+  </div>
+  <div>
+    <h2>But, but, but</h2>
+    <ul>
+      <li>Javascript is not compiled</li>
+      <li>Javascript is garbage collected</li>
+      <li>Javascript is dynamically typed</li>
+      <li>Javascript has no decent library support</li>
+      <li>Javascript is not modular, not OOP, not safe, just good for <em>scripts</em>!</li>
+      <li>Javascript is not suitable for large projects!</li>
+      <li>Javascript is an afterthought!</li>
+      <li>Javascript doesn't require semicolons!<ul>
+        <li>(mostly)</li>
+        <li>(depends on who you ask)</li>
+        <li>(there be dragons there)</li>
+        </ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Javascripters in action</h2>
+    <img style="position:absolute;bottom: 50px; left: 55px; width:690px; height:414px" src="dumbdumber.jpg" />
+  </div>
+  <div>
+    <section><h2>So, who made it possible?</h2></section>
+    <section>
+      <img style="position:absolute;bottom:260px;left:30px" src="html5.png" />
+      <img style="position:absolute;bottom:130px;left:50px" src="webgl.png" />
+      <img style="position:absolute;bottom:30px;left:50px" src="nodejs.png" />
+    </section>
+    <section>
+      <img style="position:absolute;bottom:370px;left:330px" src="webkit.png" />
+      <img style="position:absolute;bottom:370px;left:490px" src="firefox.png" />
+      <img style="position:absolute;bottom:370px;left:650px" src="chrome.png" />
+    </section>
+    <section>
+      <img style="position:absolute;bottom:230px;left:330px" src="phonegap.png" />
+      <img style="position:absolute;bottom:230px;left:490px" src="impactjs.jpg" />
+      <img style="position:absolute;bottom:210px;left:650px" src="cocoonjs.png" />
+    </section>
+    <section>
+      <img style="position:absolute;bottom:80px;left:330px" src="zynga.png" />
+      <img style="position:absolute;bottom:50px;left:500px" src="wooga.jpg" />
+      <img style="position:absolute;bottom:40px;left:650px" src="lostdecade.png" />
+    </section>
+  </div>
+  <div>
+    <h2>and, in my opinion...</h2>
+    <img style="position:absolute;bottom:100px;left:20px" src="jobsantiflash.jpg" />
+    <div style="position:absolute;top:80px;left:300px">
+      <em><ul>
+        <li>Apple has adopted HTML5, CSS and JavaScript</li>
+        <li>Flash is the number one reason Macs crash</li>
+        <li>Flash has not performed well on mobile devices</li>
+        <li>Flash was designed for PCs using mice</li>
+        <li>Letting a third party layer of software come between the platform and the developer ultimately results in sub-standard apps
+        <ul><li>Oh wait...</li></ul></li>
+      </ul></em>
+    </div>
+    <div style="position:absolute;bottom:40px;left:150px"><a href="http://www.apple.com/hotnews/thoughts-on-flash/">http://www.apple.com/hotnews/thoughts-on-flash/</a></div>
+  </div>
+  <div>
+    <div style="position:absolute;width:98%;top:30%"><h2>How do we make games with Javascript?</h2></div>
+    <h2></h2>
+  </div>
+  <div>
+    <h2>Text-based games</h2>
+    <ul>
+      <li>Function pretty much like a standard web site</li>
+      <li>Common in many early RPG/card/strategy web games</li>
+      <li>Interaction limited to clicking buttons or regions</li>
+      <li>Can only do 2D with pre-defined graphics</li>
+      <li>Little or not animation or sound</li>
+      <li>Mafia Wars: Javascript / PHP<ul>
+        <li>Single-page with complex UI</li>
+        <li>Not small: 34k LOC CSS!</li></ul></li>
+      <li>Viable approach, but very limited</li>
+    </ul>
+    <img style="position:absolute;bottom:20px;left:470px" src="mafiawars.jpg" />
+  </div>
+  <div id="divtyrian">
+    <h2><em>DOM</em>-based games</h2>
+    <ul>
+      <li>Use divs and advanced CSS to display and animate graphics</li>
+      <li>Lots of absolute positioning and CSS transforms</li>
+      <li>Heavy use of sprites and static backgrounds</li>
+      <li>Easy to take advantage of hardware acceleration</li>
+      <li>Usually limited to flat 2D</li>
+      <li>Possible to do fake 3D, but hard to get right and compatible</li>
+      <li>Natural fit with DOM-based UIs</li>
+      <li style="font-size: 0.6em">Tyrian art by Dan Cook @danctheduck</li>
+    </ul>
+    <div class="tyrianship" style="position:absolute;top:410px;left:450px;"></div>
+  </div>
+  <div>
+    <h2>Extreme <em>div</em> usage: Wolf 3D</h2>
+    <ul>
+      <li>Raycasting engine</li>
+      <li>Thin scaled divs</li>
+      <li>Hundreds of them!</li>
+      <li>But all hw-accelerated</li>
+    </ul>
+    <img style="position:absolute;bottom:20px;left:10px" src="wolf3d.jpg" />
+    <img style="position:absolute;bottom:20px;left:360px" src="wolfdivs.jpg" />
+  </div>
+  <div id="canvas">
+    <h2>Canvas</h2>
+    <ul>
+      <li>A 32 bit per pixel bitmap and a set of primitives to paint on it</li>
+      <li>Feels rather old-school - 0xA0000 anyone?</li>
+      <li>Hardware accelerated on some devices / browsers</li>
+      <li>Performance varies wildly, but generally getting better</li>
+      <li>Nice support for sprites, shapes and fonts</li>
+    </ul>
+    <!--<canvas id="c" width="320" height="240">Your browser doesn't support canvas :(</canvas>-->
+    <img style="position:absolute;bottom:40px;left:40px" src="onslaughtarena.jpg" />
+    <img style="position:absolute;bottom:40px;left:400px" src="outrun.jpg" />
+  </div>
+  <div id="webgl">
+    <h2>WebGL</h2>
+    <ul>
+      <li>A variant of OpenGL ES 2.0 for Javascript</li>
+      <li>Surprise, unsupported on Internet Explorer, WinXP, or iOS Safari</li>
+      <li>Programmable shaders through GLSL</li>
+      <li>Fantastic performance - necessarily hardware accelerated
+        <ul><li>But keep dynamic geometry and API calls in check</li></ul></li>
+    </ul>
+    <!--<canvas id="c" width="320" height="240">Your browser doesn't support canvas :(</canvas>-->
+    <img style="position:absolute;bottom:40px;left:40px" src="cubewebgl.jpg" />
+    <img style="position:absolute;bottom:40px;left:340px" src="pacmaze.jpg" />
+  </div>
+  <div>
+    <h2>Audio</h2>
+    <ul>
+      <li>The &lt;audio&gt; tag is an absolute disaster for gaming
+        <ul><li>Issues with latency, limits, looping, cloning</li>
+        <li>iOS Safari limits audio usage to user input events</li>
+        <li>iOS Safari only plays back one sound at a time</li>
+        <li>Some implementations unfriendly to some web servers</li></ul></li>
+      <li>Formats: .mp3 vs .ogg (vs .wav?)</li>
+      <li>Chrome's Web Audio is the only sane solution IMHO</li>
+      <li>Mozilla built Audio Data and now MediaStream Processing API</li>
+      <li>SoundManager 2 a common library to deal with this mess
+        <ul><li>Uses Flash audio as fallback</li></ul></li>
+      <li>Some people (esp. on mobile) just opt for sound-less games</li>
+    </ul>
+  </div>
+  <div>
+    <h2>Input</h2>
+    <ul>
+      <li>Desktop
+      <ul><li>Mouse events: <em>click, mousedown/mouseup/mousemove</em></li>
+      <li>Pointer Lock API: <em>request/exitPointerLock()</em>, <em>pointerlockchange</em> event, <em>movementX/Y</em></li>
+      <li>Gamepad API: <em>Gamepad</em> objects, <em>connected/disconnected</em> events</li>
+      <li>Keyboard: keydown/keyup/keypress</li></ul></li>
+      <li>Mobile
+      <ul><li>Multitouch: <em>touchstart/end/move</em> events and <em>Touch</em> objects</li>
+      <li>Mobile devices simulate mouse events but with lag</li>
+      <li>Accelerometer &amp; Geolocation for extra fun</li></ul></li>
+      <li>Remember <em>event.stopPropagation()</em> and <em>event.preventDefault()</em></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Performance</h2>
+    <ul>
+      <li>Huge variations depending on device and browser
+        <ul><li>Canvas on iOS 4 Safari was about 3x slower than iOS 5</li></ul></li>
+      <li>Rule #1: avoid garbage! Heh
+        <ul><li>Temporary objects have to be garbage collected</li>
+        <li>GC runs can cause pauses several 1/10 of a second</li>
+        <li>Reuse objects, use pools, use <em>scratch</em> objects</li></ul></li>
+      <li>Use stable objects
+        <ul><li>Identical internal structure or <em>type</em></li>
+        <li>VMs can JIT functions for inferred types</li></ul></li>
+      <li>General purpose and game-specific optimizations apply
+        <ul><li>Graceful degradation and level of detail</li></ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Performance</h2>
+    <ul>
+      <li>Help the compiler with your time-critical code
+        <ul><li>Use local scope, don't use 'with' or deep nesting</li>
+        <li>Move closures and constant expressions out of loops</li>
+        <li>Cache and memoize as much as you can</li>
+        <li>Have good data structures and algorithms before hacking</li></ul></li>
+      <li>Consider Web Workers and TypedArrays</li>
+      <li>Learn the tools available for profiling and debugging</li>
+      <li>Many surprises await
+        <ul><li>Infamous 'translate-Z-by-zero' to enable hw acceleration</li>
+        <li>Comments can prevent inlining</li></ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Mobile wrappers</h2>
+    <ul>
+      <li>Bundle html, Javascript &amp; assets into a native app</li>
+      <li>WebView approach
+        <ul><li>Use a native UI component to render Web content</li>
+        <li>Provide hooks for nonstandard native APIs</li>
+        <li>PhoneGap, Appcelerator</li>
+        <li>Performance may suffer compared to native browser</li></ul></li>
+      <li>Runtime + Javascript VM
+        <ul><li>A game engine that exposes Javascript as scripting language</li>
+        <li>Fantastic performance of game-specific primitives</li>
+        <li>GameClosure, CocoonJS, ImpactJS</li>
+        <li>HTML5 and DOM APIs support may be flaky</li></ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Online and server side</h2>
+    <ul>
+      <li>AJAX is fine for sending commands to a server</li>
+      <li>WebSockets for realtime two-way communications</li>
+      <li>NodeJS as a server platform
+        <ul><li>Google's V8 engine + libuv evented I/O library</li>
+        <li>Fast and efficient way to handle lots of traffic</li>
+        <li>Fantastic module ecosystem with its own package manager</li>
+        <li>socket.io is an excellent library &amp; module</li>
+        <li>Clunky for expensive server-side computations</li></ul></li>
+      <li>Databases: MongoDB and Riak support Javascript for Map/Reduce</li>
+      <li>WebRTC: Google's project for realtime video/audio communication</li>
+    </ul>
+  </div>
+  <div>
+    <h2>Misc</h2>
+    <ul>
+      <li>Careful with load times and bandwidth
+        <ul><li>Consider Cache Manifest and Local Storage / Temp Filesystem</li>
+        <li>Parallelize &amp; preload assets - but not too much!</li></ul></li>
+      <li>Test, test, test - and know when to just ignore a device</li>
+      <li>Your source code is in the hands of the enemy
+        <ul><li>Minify, uglify, consider the Closure compiler</li>
+        <li>Think carefully about credentials and cheat prevention</li></ul></li>
+      <li>Don't forget to monetize: Google Wallet, Facebook <strike>Credits</strike>, etc</li>
+      <li>Fantastic prototyping experience
+        <ul><li>Lots of core tech done for you</li>
+        <li>Available everywhere, even mobile</li></ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Misc</h2>
+    <ul>
+      <li>Some HTML5 engines
+        <ul><li>Construct 2 - visual editor that outputs HTML5</li>
+        <li>Mandreel - converts C++/C# to WebGL/Flash. Halfbrick-owned</li>
+        <li>ImpactJS - Both a general HTML5 engine and a mobile wrapper</li>
+        <li>Haxe - Actionscript-like, outputs Javascript among others</li></ul></li>
+      <li>Some interesting games to look at
+        <ul><li>BrowserQuest - opensource browser MMO by Mozilla</li>
+        <li>Angry Birds for Chrome - Angry Birds on the Chrome Web Store!</li>
+        <li>Cut The Rope - famous iOS hit ported as a marketing bit for IE9</li>
+        <li>Bejeweled - Granddaddy of Match-3 games</li>
+        <li>The Convergence, Strike Fortress, Agent P, Onslaught Arena</li></ul></li>
+    </ul>
+  </div>
+  <div>
+    <h2>A random act of link spam</h2>
+    <ul>
+      <li><a href="http://www.html5rocks.com/">http://www.html5rocks.com/</a></li>
+      <li><a href="http://sixrevisions.com/web-development/html5-iphone-app/">http://sixrevisions.com/web-development/html5-iphone-app/</a></li>
+      <li><a href="http://blog.nihilogic.dk/2009/02/html5-canvas-cheat-sheet.html">http://blog.nihilogic.dk/2009/02/html5-canvas-cheat-sheet.html</a></li>
+      <li><a href="http://creativejs.com/">http://creativejs.com/</a></li>
+      <li><a href="http://www.lostdecadegames.com/lostcast/">http://www.lostdecadegames.com/lostcast/</a></li>
+      <li><a href="http://learningwebgl.com/blog/">http://learningwebgl.com/blog/</a></li>
+      <li><a href="http://code.zynga.com/">http://code.zynga.com/</a></li>
+      <li><a href="http://www.wooga.com/2012/06/woogas-html5-adventure/">http://www.wooga.com/2012/06/woogas-html5-adventure/</a></li>
+      <li><a href="http://floitsch.blogspot.de/2012/03/optimizing-for-v8-introduction.html">http://floitsch.blogspot.de/2012/03/optimizing-for-v8-introduction.html</a></li>
+      <li><a href="http://www.html5gamedevelopment.org/">http://www.html5gamedevelopment.org/</a></li>
+      <li><a href="http://browserquest.mozilla.org/">http://browserquest.mozilla.org/</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="titlecenter" style="top:20%"><h1>Thank you!</h1><p>Any questions?</p><br/><p>@TheJare</p><p><a href="http://www.iguanademos.com/Jare/">http://www.iguanademos.com/Jare/</a></p></div>
+  </div>
+</div>
+
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+// Common JS utilities I love
+function safeParseInt(val, def) {
+    var v = parseInt(val);
+    if (isNaN(v))
+        v = def || 0;
+    return v;
+}
+
+function clamp(v, a, b) {
+    return (v < a)? a : ((v > b)? b : v);
+}
+
+function PrefixCss(c, prop, val) {
+    var prefixes = ["", "webkit", "moz", "o", "ms"];
+    for (var i in prefixes) {
+        var prefixedprop = (prefixes[i] != ""? ("-"+prefixes[i]+"-"): "") + prop;
+        c.css(prefixedprop, val);
+    }
+}
+</script>
+
+<script>
+// Page-specific code
+$(function() {
+window.PageFunctions = {};
+
+window.PageFunctions['divtyrian'] = function(el, entering) {
+    if (entering) {
+        var c = $('.tyrianship', el).get(0);
+        if (c) {
+            $(c).css({top:0, left:0});
+            var shipData = { x: 350, y: 280, a: 0 };
+            var shipIntervalFunc = function() {
+                var x = shipData.x + 200*Math.cos(shipData.a);
+                var y = shipData.y + 200*Math.sin(shipData.a);
+                PrefixCss($(c), "transform", "translate("+x+"px,"+y+"px) rotate("+shipData.a*3+"rad)");
+                shipData.a += .02;
+            }
+            window.PageFunctions['divtyrian'].shipIntervalID = window.setInterval(shipIntervalFunc, 1000/60);
+        } else {
+            window.clearInterval(window.PageFunctions['divtyrian'].shipIntervalID);
+        }
+    }
+};
+/*
+window.PageFunctions['canvas'] = function(el, entering) {
+    var c = $('#c', el).get(0);
+    if (c) {
+        if (entering) {
+            var x = c.getContext('2d');
+            x.fillStyle = "#F0F";
+            x.fillRect(0, 0, c.width, c.height);
+        } else {
+            $(c).remove();
+        }
+    }
+};
+
+window.PageFunctions['webgl'] = function(el, entering) {
+    var c = $('#c', el).get(0);
+    if (c) {
+        if (entering) {
+            var x = c.getContext('2d');
+            x.fillStyle = "#F0F";
+            x.fillRect(0, 0, c.width, c.height);
+        } else {
+            $(c).remove();
+        }
+    }
+};
+*/
+});
+
+</script>
+<script>
+// Oh my this code has grown so organically, it has now rotten and looks like ****
+$(function() {
+
+// Attempt at global scale, but not functional cos it needs to touch all positioning data within slides.
+// Was a nice idea tho
+var IDEALW=800;
+var IDEALH=600;
+
+var cardWidth = IDEALW;
+var globalScale = 1;
+
+function onWindowResize() {
+    var ww = $(window).width();
+    var wh = $(window).height();
+    var sww = Math.min(ww, IDEALW);
+    var swh = Math.min(wh, IDEALH);
+    var wratio = sww/swh;
+    var cardw, cardh;
+    if (wratio > IDEALW/IDEALH) {
+        cardw = Math.floor(IDEALW*swh/IDEALH);
+        cardh = swh;
+    } else {
+        cardw = sww;
+        cardh = IDEALH*sww/IDEALW;
+    }
+    $('#card').width(cardw)
+              .height(cardh)
+              .css("top", (wh-cardh)/2)
+              .css("left", (ww-cardw)/2);
+    globalScale = cardw/IDEALW;
+    cardWidth = cardw;
+}
+
+window.onresize = onWindowResize;
+
+onWindowResize();
+
+function getRotation(n) {
+    var k = Math.floor(cardWidth/3);
+    return "translateZ("+(-k)+"px) rotateY("+n+"deg) translateZ("+k+"px)"
+}
+
+var visibleCard = null;
+var backCard = null;
+
+function fadeCardForward(c) {
+    PrefixCss(c, "transform", getRotation(90));
+    backCard = c;
+}
+
+function fadeCardBackward(c) {
+    PrefixCss(c, "transform", getRotation(-90));
+    backCard = c;
+}
+
+function showCardForward(c) {
+    PrefixCss(c, "transform", getRotation(0));
+    visibleCard = c;
+}
+
+function showCardBackward(c) {
+    PrefixCss(c, "transform", getRotation(0));
+    visibleCard = c;
+}
+
+// ----------------------------
+
+var slides = $("#presentation > div");
+
+var sectionnum = 0;
+
+function createCard(container, pagenum) {
+    var newCard = $("<div>").addClass("face");
+    var slide = $(slides[pagenum-1]);
+    var sections = $("section", slide);
+    if (sections.length > 0) {
+        sectionnum = 0;
+        newCard.append($(sections[sectionnum]).clone());
+    } else {
+        sectionnum = -1;
+        newCard.append(slide.clone());
+    }
+
+    newCard.append("<div class='copyrightbar'>SpainJS conference, July 2012");
+    container.append(newCard);
+    return newCard;
+}
+
+function createSimpleSlide(container, pagenum) {
+    var newCard = $("<div>").addClass("simpleslide");
+    var slide = $(slides[pagenum-1]);
+    var sections = $("section", slide);
+    newCard.append(slide.clone());
+    newCard.append("<div class='copyrightbar'>SpainJS conference, July 2012");
+    container.append(newCard);
+    return newCard;
+}
+
+function ShowAllPages(container) {
+    container.empty();
+    slides.each(function(i, el) {
+        createSimpleSlide(container, i+1);
+        container.append($("<br/>"));
+    });
+}
+
+
+var pagenum = 1;
+var inPageTransition = false;
+
+function GoToPage(newPageNum) {
+    if (inPageTransition)
+        return;
+    if (newPageNum === 'all') {
+        $("#card").empty();
+        $("#slidepage").empty();
+        ShowAllPages($("#completeslides"));
+        pagenum = newPageNum;
+        return;
+    }
+    $("#completeslides").empty();
+    newPageNum = clamp(newPageNum, 1, slides.length);
+    if (backCard)
+        backCard.remove();
+    var oldCard = visibleCard;
+    var newCard = createCard($("#card"), newPageNum);
+
+    // per-slide enter/exit calls
+    if (oldCard && oldCard.get(0).children[0].id in window.PageFunctions) {
+        window.PageFunctions[oldCard.get(0).children[0].id](oldCard, false);
+    }
+    if (newCard.get(0).children[0].id in window.PageFunctions) {
+        window.PageFunctions[newCard.get(0).children[0].id](newCard, true);
+    }
+
+    // Start the transitions
+    if (!oldCard) {
+        showCardForward(newCard);
+    } else if (newPageNum > pagenum) {
+        fadeCardForward(newCard);
+        inPageTransition = true;
+        setTimeout(function() { showCardBackward(newCard); inPageTransition = false;}, 100);
+        fadeCardBackward(oldCard);
+    } else {
+        fadeCardBackward(newCard);
+        inPageTransition = true;
+        setTimeout(function() { showCardForward(newCard);  inPageTransition = false;}, 100);
+        fadeCardForward(oldCard);
+    }
+
+    // Decoration updates.
+    pagenum = newPageNum;
+    window.location.hash = "#"+pagenum;
+    //document.title = "Slides page "+pagenum;
+    $("#slidepage").text("page " + pagenum + " / " + slides.length);
+}
+
+if (window.location.hash) {
+    var hash = window.location.hash.substring(1);
+    pagenum = hash == 'all'? hash : safeParseInt(hash, pagenum);
+}
+GoToPage(pagenum);
+$(window).on("hashchange", function(e) {
+    var hash = window.location.hash.substring(1);
+    var newPage = hash == 'all'? hash : safeParseInt(hash, pagenum);
+    if (newPage != pagenum) {
+        GoToPage(newPage);
+    }
+});
+
+function MovePresentationForward() {
+    if (sectionnum >= 0) {
+        var slide = $(slides[pagenum-1]);
+        var sections = $("section", slide);
+        if (sectionnum < sections.length-1) {
+            sectionnum++;
+            visibleCard.append($(sections[sectionnum]).clone());
+            return;
+        }
+    }
+    if (pagenum < slides.length) GoToPage(pagenum+1);
+}
+
+function MovePresentationBackward() {
+    if (pagenum > 1) GoToPage(pagenum-1);
+}
+
+function MovePresentationBeginning() {
+    if (pagenum > 1) GoToPage(1);
+}
+
+function MovePresentationEnd() {
+    if (pagenum < slides.length) GoToPage(slides.length);
+}
+
+$(document.body).on("keydown", function(e) {
+    if (pagenum === 'all') return true;
+    if ([40, 39, 32, 34].indexOf(e.which) > -1) {
+        MovePresentationForward();
+        e.preventDefault();
+    } else if ([37, 38, 8, 33].indexOf(e.which) > -1) {
+        MovePresentationBackward();
+        e.preventDefault();
+    } else if (e.which == 36) {
+        MovePresentationBeginning();
+        e.preventDefault();
+    } else if (e.which == 35) {
+        MovePresentationEnd();
+        e.preventDefault();
+    }
+
+});
+
+$("#container").on("mousedown", function(e) {
+    if (pagenum === 'all') return true;
+    if (e.pageX > $(window).width()/2) {
+        MovePresentationForward();
+    } else {
+        MovePresentationBackward();
+    }
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+});
+</script>
+
+</body>
+</html>
